@@ -10,4 +10,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: ls -alhR
+      - run: npm install
+      - run: |
+          mkdir -p test-results
+          npm test -- --reporter=junit --reporter-options "output=test-results/junit.xml"
+      - run: zip -r app_bundle.zip . -x "*.git*" ".github/*" "test-results/*"
