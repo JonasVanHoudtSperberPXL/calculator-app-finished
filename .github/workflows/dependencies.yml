@@ -1,0 +1,11 @@
+name: Dependencies Example
+on: 
+  workflow_dispatch:
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-node@v4
+      - run: ls -alhR
