@@ -13,5 +13,7 @@ jobs:
       - run: npm install
       - run: |
           mkdir -p test-results
-          npm test -- --reporter=junit --reporter-options "output=test-results/junit.xml"
+          npm test
       - run: zip -r app_bundle.zip . -x "*.git*" ".github/*" "test-results/*"
+      - name: Better Test Reports Action
+        uses: mridang/action-test-reporter@v1.7.0
