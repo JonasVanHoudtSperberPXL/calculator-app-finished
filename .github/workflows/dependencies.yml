@@ -13,7 +13,11 @@ jobs:
       - run: npm install
       - run: |
           mkdir -p test-results
-          npm test
+          npm test -- --coverage
       - run: zip -r app_bundle.zip . -x "*.git*" ".github/*" "test-results/*"
-      - name: Better Test Reports Action
-        uses: mridang/action-test-reporter@v1.7.0
+      - name: Code Coverage Report
+        uses: mridang/action-test-reporter@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: ./coverage/clover.xml # Path to your clover, cobertura, jacoco, or lcov file
+          working-directory: ./
